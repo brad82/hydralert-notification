@@ -1,0 +1,37 @@
+{
+  "configurations": [
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "aws": {
+        "region": "us-west-2"
+      },
+      "invokeTarget": {
+        "target": "template",
+        "logicalId": "hydralertnotifier",
+        "templatePath": "template.yml"
+      },
+      "lambda": {
+        "runtime": "nodejs22.x",
+        "environmentVariables": {
+          "OPENAI_API_KEY": "OPENAI_API_KEY"
+        },
+        "payload": {
+          "json": {
+            "Name": "NAME",
+            "PhoneNumber": "PHONE"
+          }
+        }
+      },
+      "sam": {
+        "containerBuild": false,
+        "skipNewImageCheck": false
+      },
+      "api": {
+        "httpMethod": "get"
+      },
+      "noDebug": false,
+      "name": "with-openai"
+    }
+  ]
+}

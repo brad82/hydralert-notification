@@ -1,0 +1,7 @@
+{
+  "name": "function",
+  "version": "1.0.0",
+  "dependencies": {
+    "openai": "^5.8.2"
+  }
+}
