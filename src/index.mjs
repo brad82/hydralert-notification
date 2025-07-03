@@ -19,17 +19,11 @@ function getLocalTime() {
 async function getNotificationMessage(name) {
   const response = await openai.responses.create({
     model: "gpt-4o-mini",
-    input: [
-      {
-        role: "user",
-        content:
-          `write me a message for ${name} to tell them to drink some water tailored to the current time of ` +
-          getLocalTime(),
-      },
-    ],
+    input: `write a message to ${name} telling them to drink some water. Base it on the current time of day`,
+    instructions: `The current time is ${getLocalTime()}. Make it sound like a friendly reminder.`,
   });
 
-  return output_text;
+  return response.output_text;
 }
 
 export const handler = async ({ PhoneNumber, Name }) => {
@@ -39,11 +33,11 @@ export const handler = async ({ PhoneNumber, Name }) => {
     PhoneNumber,
   };
 
-  const snsResponse = await snsClient.send(new PublishCommand(commandBody));
+  console.log("Sending message:", commandBody);
+  const response = await snsClient.send(new PublishCommand(commandBody));
 
-  const response = {
+  return {
     statusCode: 200,
-    body: JSON.stringify(snsResponse),
+    body: JSON.stringify(response),
   };
-  return response;
 };
