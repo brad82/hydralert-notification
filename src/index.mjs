@@ -23,6 +23,8 @@ async function getNotificationMessage(name) {
     instructions: `The current time is ${getLocalTime()}. Make it sound like a friendly reminder.`,
   });
 
+  console.log("OpenAI response:", response);
+
   return response.output_text;
 }
 

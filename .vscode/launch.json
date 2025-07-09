@@ -14,11 +14,11 @@
       "lambda": {
         "runtime": "nodejs22.x",
         "environmentVariables": {
-          "OPENAI_API_KEY": "OPENAI_API_KEY"
+          "OPENAI_API_KEY": "${env:OPENAI_API_KEY}"
         },
         "payload": {
           "json": {
-            "Name": "NAME",
+            "Name": "Brad",
             "PhoneNumber": "PHONE"
           }
         }
